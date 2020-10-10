@@ -8,7 +8,7 @@ export default function Bowling() {
 
     function sendData(){
 
-    fetch(`http://localhost:3000/bowling?score=${score.join('')}`, {
+    fetch(`/bowling?score=${score.join('')}`, {
         method: 'POST', 
         headers:{
           'Content-Type': 'application/json'
