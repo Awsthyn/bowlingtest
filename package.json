@@ -8,8 +8,8 @@
     "npm": "6.14.8"
   },
   "scripts": {
-    "start": "node index.js",
-    "nodemon": "nodemon ./index.js",
+    "start": "node app.js",
+    "nodemon": "nodemon ./app.js",
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {

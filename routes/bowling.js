@@ -1,14 +1,11 @@
 const app = require("express").Router();
 
-let case1 = 'XXXXXXXXXXXX'
-let case2 = '9-9-9-9-9-9-9-9-9-9-'
-let case3 = '5/5/5/5/5/5/5/5/5/5/5'
 
 function bowlingScore(rolls){
 
 let translation = []
 for(let i = 0; i < rolls.length; i++){
- if(rolls[i] === "X") translation.push([10, 0])
+ if(rolls[i] === "X" || rolls[i] === "x") translation.push([10, 0])
  else if(rolls[i+1] === '/')  translation.push([Number(rolls[i]), false])
  else if(rolls[i+1] === '-') translation.push([Number(rolls[i]), null])
  else if(Number(rolls[i]) > 0 && Number(rolls[i]) < 10 && i === rolls.length-1) translation.push([Number(rolls[i]), null])
