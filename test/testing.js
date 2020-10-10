@@ -7,6 +7,7 @@ const url = 'http://localhost:3000/bowling';
 let case1 = 'XXXXXXXXXXXX';
 let case2 = '9-9-9-9-9-9-9-9-9-9-';
 let case3 = '5/5/5/5/5/5/5/5/5/5/5';
+let case4 = '5162XXXXXXXXXX'
 
 describe('POST: ', () => {
 	it('12 strikes: 300', (done) => {
@@ -33,6 +34,15 @@ describe('POST: ', () => {
 			.end(function (err, res) {
 				expect(res).to.have.status(200);
 				expect(res.body).to.be.equal(150);
+				done();
+			});
+	});
+	it('1st frame: 5,1, 2nd frame: 6,2, then 10 strikes: 254', (done) => {
+		chai.request(url)
+			.post(`/?score=${case4}`)
+			.end(function (err, res) {
+				expect(res).to.have.status(200);
+				expect(res.body).to.be.equal(254);
 				done();
 			});
 	});

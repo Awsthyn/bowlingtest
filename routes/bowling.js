@@ -4,12 +4,19 @@ const app = require("express").Router();
 function bowlingScore(rolls){
 
 let translation = []
+
+//Necesario para los casos en que en un turno se hacen 2 tiros, y el segundo tiro no sea -, X ni /.
+let jump = false
+
 for(let i = 0; i < rolls.length; i++){
- if(rolls[i] === "X" || rolls[i] === "x") translation.push([10, 0])
+ if(jump === true) jump = false
+ else if(rolls[i] === "X" || rolls[i] === "x") translation.push([10, 0])
  else if(rolls[i+1] === '/')  translation.push([Number(rolls[i]), false])
  else if(rolls[i+1] === '-') translation.push([Number(rolls[i]), null])
  else if(Number(rolls[i]) > 0 && Number(rolls[i]) < 10 && i === rolls.length-1) translation.push([Number(rolls[i]), null])
- else if(Number(rolls[i]) > 0 && Number(rolls[i]) < 10 && Number(rolls[i+1]) > 0 && Number(rolls[i+1]) < 10 ) translation.push([Number(rolls[i]), Number(rolls[i+1])])
+ else if(Number(rolls[i]) > 0 && Number(rolls[i]) < 10 && Number(rolls[i+1]) > 0 && Number(rolls[i+1]) < 10 ) {
+   jump = true
+   translation.push([Number(rolls[i]), Number(rolls[i+1])])}
 }
 
 let score = []
